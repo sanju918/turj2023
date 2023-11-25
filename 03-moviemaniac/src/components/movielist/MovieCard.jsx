@@ -1,7 +1,7 @@
 import Star from "../../assets/star.png";
 import "./MovieCard.css";
 
-export const MovieCard = () => {
+export const MovieCard = ({ title }) => {
   return (
     <a href="" className="movie_card">
       <img
@@ -10,7 +10,7 @@ export const MovieCard = () => {
         className="movie_poster"
       />
       <div className="movie_details">
-        <h3 className="movie_details_heading">Movie Name</h3>
+        <h3 className="movie_details_heading">{title}</h3>
         <div className="align_center movie_date_rate">
           <p>10-20-2020</p>
           <p>

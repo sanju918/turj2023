@@ -1,8 +1,24 @@
 import "./MovieList.css";
 import Fire from "../../assets/fire.png";
 import { MovieCard } from "./MovieCard";
+import { useEffect, useState } from "react";
 
 export const MovieList = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  const fetchMovies = async () => {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=b5a717895b70429b0aa3736efc37e8f2"
+    );
+    const data = await res?.json();
+    setMovies(data?.res);
+    // console.log(data);
+  };
+
   return (
     <section className="movie_list">
       {/*  Header */}
