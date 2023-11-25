@@ -15,8 +15,8 @@ export const MovieList = () => {
       "https://api.themoviedb.org/3/movie/popular?api_key=b5a717895b70429b0aa3736efc37e8f2"
     );
     const data = await res?.json();
-    setMovies(data?.res);
-    // console.log(data);
+    setMovies(data?.results);
+    console.log(data);
   };
 
   return (
@@ -45,7 +45,16 @@ export const MovieList = () => {
       </header>
       {/* Movie Card List */}
       <div className="movie_cards">
-        <MovieCard />
+        {/* <MovieCard /> */}
+        {movies?.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            overview={movie.overview}
+            poster={movie.poster_path}
+            release_dt={movie.release_date}
+          />
+        ))}
       </div>
     </section>
   );
