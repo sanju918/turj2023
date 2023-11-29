@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 export const MovieList = () => {
   const [movies, setMovies] = useState([]);
+  const [filterMovies, setFilterMovies] = useState([]);
+  const [minRating, setMinRating] = useState(0);
 
   useEffect(() => {
     fetchMovies();
@@ -16,7 +18,21 @@ export const MovieList = () => {
     );
     const data = await res?.json();
     setMovies(data?.results);
+    setFilterMovies(data?.results);
     console.log(data);
+  };
+
+  const handleFilter = (rate) => {
+    if (rate === minRating) {
+      setMinRating(0);
+      setFilterMovies(movies);
+    } else {
+      setMinRating(rate);
+      const filtered_movies = movies.filter(
+        (movie) => movie.vote_average >= rate
+      );
+      setFilterMovies(filtered_movies);
+    }
   };
 
   return (
@@ -28,9 +44,36 @@ export const MovieList = () => {
         </h2>
         <div className="align_center movie_list_fs">
           <ul className="align_center movie_filter">
-            <li className="movie_filter_item active">8+ Star</li>
-            <li className="movie_filter_item">7+ Star</li>
-            <li className="movie_filter_item">6+ Star</li>
+            <li
+              className={
+                minRating === 8
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(8)}
+            >
+              8+ Star
+            </li>
+            <li
+              className={
+                minRating === 7
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(7)}
+            >
+              7+ Star
+            </li>
+            <li
+              className={
+                minRating === 6
+                  ? "movie_filter_item active"
+                  : "movie_filter_item"
+              }
+              onClick={() => handleFilter(6)}
+            >
+              6+ Star
+            </li>
           </ul>
           <select name="" id="" className="movie_sorting">
             <option value="">SortBy</option>
@@ -46,7 +89,7 @@ export const MovieList = () => {
       {/* Movie Card List */}
       <div className="movie_cards">
         {/* <MovieCard /> */}
-        {movies?.map((movie) => (
+        {filterMovies?.map((movie) => (
           <MovieCard
             key={movie.id}
             title={movie.title}

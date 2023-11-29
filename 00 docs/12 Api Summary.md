@@ -1,0 +1,39 @@
+Section 06 - Summary
+
+#### 🚀 What is API?
+
+- API stands for Application Programming Interface. API is used to transfer data between two application.
+- For example, API is like waiter in the restaurant. We as frontend request data to our API and API pass that request to our backend. Then backend return response and give it to the API and finally API will deliver that response to us.
+- Now some company also share their API for public usage and that API is called as public API.
+
+#### 🚀 What is Fetch API? (Fetch API Cheatsheet)
+
+- Fetch API is used to make http requests like GET, POST, PUT, DELETE in easy way. By using Fetch method, we can get data from backend/any-api, we can also send data to backend and much more.
+- There are AJAX and XMLHttpRequest also for making API request but they are little complex in compare to Fetch method.
+
+#### 📌 Making GET request using Fetch method
+
+- So for GET request we have to just pass the API url in the fetch method.
+- Now for handling promise, we use then method. First of all, we have to convert the response(which API send) into json format. So for that we use `res.json()`
+- Now this then method again return a promise. So we use another then method to handle it and we get the data as parameter.
+
+<pre class="prettyprint linenums prettyprinted" role="presentation"><ol class="linenums"><li class="L0"><p><span class="pln">fetch</span><span class="pun">(</span><span class="str">"<https://jsonplaceholder.typicode.com/users>"</span><span class="pun">)</span></p></li><li class="L1" data-node-id="20231129115126-8hguud8"><p><span class="pln"></span><span class="pun">.</span><span class="kwd">then</span><span class="pun">((</span><span class="pln">res</span><span class="pun">)</span><span class="pln"></span><span class="pun">=></span><span class="pln"> res</span><span class="pun">.</span><span class="pln">json</span><span class="pun">())</span></p></li><li class="L2"><p><span class="pln"></span><span class="pun">.</span><span class="kwd">then</span><span class="pun">((</span><span class="pln">data</span><span class="pun">)</span><span class="pln"></span><span class="pun">=></span><span class="pln"> console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">));</span></p></li></ol></pre>
+
+#### 📌 Making POST request using Fetch method
+
+- Usaually POST request is used to send data to the backend or for creating new data. For example, Register a new user, login user etc.
+- So for making POST request we have to pass POST api url as first argument. But we have to pass one more argument which is configuration object.
+- This object has few properties. Like method for specify API method, body for sending data with that request but for some API we have to convert our data in to string. So we use here `JSON.stringify(data)`
+- And in header we specify `"Content-type": "application/json"` which is totally depend on API.
+
+<pre class="prettyprint linenums prettyprinted" role="presentation"><ol class="linenums"><li class="L0"><p><span class="kwd">const</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"></span><span class="pun">{</span></p></li><li class="L1" data-node-id="20231129115126-xrw3mk0"><p><span class="pln">    title</span><span class="pun">:</span><span class="pln"></span><span class="str">"This is title"</span><span class="pun">,</span></p></li><li class="L2"><p><span class="pln">    body</span><span class="pun">:</span><span class="pln"></span><span class="str">"This is post body"</span><span class="pun">,</span></p></li><li class="L3" data-node-id="20231129115126-keasf9v"><p><span class="pln">    userId</span><span class="pun">:</span><span class="pln"></span><span class="lit">2</span><span class="pun">,</span></p></li><li class="L4"><p><span class="pun">};</span></p></li><li class="L5" data-node-id="20231129115126-k0xg99e"><p><span class="pln"> </span></p></li><li class="L6"><p><span class="pln">fetch</span><span class="pun">(</span><span class="str">"<https://jsonplaceholder.typicode.com/posts>"</span><span class="pun">,</span><span class="pln"></span><span class="pun">{</span></p></li><li class="L7" data-node-id="20231129115126-qlkpoll"><p><span class="pln">    method</span><span class="pun">:</span><span class="pln"></span><span class="str">"POST"</span><span class="pun">,</span></p></li><li class="L8"><p><span class="pln">    body</span><span class="pun">:</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">stringify</span><span class="pun">(</span><span class="pln">data</span><span class="pun">),</span></p></li><li class="L9" data-node-id="20231129115126-0gcn2ux"><p><span class="pln">    headers</span><span class="pun">:</span><span class="pln"></span><span class="pun">{</span></p></li><li class="L0"><p><span class="pln"></span><span class="str">"Content-type"</span><span class="pun">:</span><span class="pln"></span><span class="str">"application/json"</span><span class="pun">,</span></p></li><li class="L1" data-node-id="20231129115126-j5q70rx"><p><span class="pln"></span><span class="pun">},</span></p></li><li class="L2"><p><span class="pun">})</span></p></li><li class="L3" data-node-id="20231129115126-iisykx6"><p><span class="pln"></span><span class="pun">.</span><span class="kwd">then</span><span class="pun">((</span><span class="pln">res</span><span class="pun">)</span><span class="pln"></span><span class="pun">=></span><span class="pln"> res</span><span class="pun">.</span><span class="pln">json</span><span class="pun">())</span></p></li><li class="L4"><p><span class="pln"></span><span class="pun">.</span><span class="kwd">then</span><span class="pun">((</span><span class="pln">data</span><span class="pun">)</span><span class="pln"></span><span class="pun">=></span><span class="pln"> console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">));</span></p></li></ol></pre>
+
+- Now if you want to make PUT or DELETE request, then you have to only change the method type in configuration object.
+
+#### 🎁 Bonus - Fetch method with Async-await
+
+- Async-await is used to handle promise in much simpler way. By using them we can make our code more simple.
+
+<pre class="prettyprint linenums prettyprinted" role="presentation"><ol class="linenums"><li class="L0"><p><span class="pln">async </span><span class="kwd">function</span><span class="pln"> getUsers</span><span class="pun">()</span><span class="pln"></span><span class="pun">{</span></p></li><li class="L1" data-node-id="20231129115126-2c6mztb"><p><span class="pln"></span><span class="kwd">const</span><span class="pln"> res </span><span class="pun">=</span><span class="pln"> await fetch</span><span class="pun">(</span><span class="str">"<https://jsonplaceholder.typicode.com/users>"</span><span class="pun">);</span></p></li><li class="L2"><p><span class="pln"></span><span class="kwd">const</span><span class="pln"> data </span><span class="pun">=</span><span class="pln"> res</span><span class="pun">.</span><span class="pln">json</span><span class="pun">();</span></p></li><li class="L3" data-node-id="20231129115126-khos8xn"><p><span class="pln">    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span></p></li><li class="L4"><p><span class="pun">}</span></p></li><li class="L5" data-node-id="20231129115126-x8a17bl"><p><span class="pln"> </span></p></li><li class="L6"><p><span class="pln">getUsers</span><span class="pun">();</span></p></li></ol></pre>
+
+- If you don’t know promise and async-await, don’t worry I created tutorial on [Asynchronous JavaScript](https://youtu.be/3ZY_sqGszDI) and in that I explain it in very detailed way.

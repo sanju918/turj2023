@@ -18,8 +18,9 @@ export const MovieCard = ({ movie }) => {
         <h3 className="movie_details_heading">{movie.title}</h3>
         <div className="align_center movie_date_rate">
           <p>{movie.release_date}</p>
-          <p>
-            8.0 <img src={Star} alt="rating icon" className="card_emoji" />
+          <p className="align_center">
+            {movie.vote_average}{" "}
+            <img src={Star} alt="rating icon" className="card_emoji" />
           </p>
         </div>
         <p className="movie_description">
