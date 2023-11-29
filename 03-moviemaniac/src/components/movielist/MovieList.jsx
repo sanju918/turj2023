@@ -53,6 +53,7 @@ export const MovieList = () => {
             overview={movie.overview}
             poster={movie.poster_path}
             release_dt={movie.release_date}
+            movie={movie}
           />
         ))}
       </div>
